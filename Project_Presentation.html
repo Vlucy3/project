@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Retail Sales Forecasting Presentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css">
+
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { color: #00d4ff; text-transform: none; }
+        .highlight { color: #f9d423; font-weight: bold; }
+        .metric-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 200px;
+        }
+        .step { color: #00ff88; font-weight: bold; }
+        ul { font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section>
+                <h1>Retail Sales Forecasting</h1>
+                <h3>An Optimized Machine Learning Approach</h3>
+                <p>
+                    <small>Created by Gemini CLI Agent</small>
+                </p>
+                <div style="margin-top: 50px; font-size: 0.6em; color: #888;">
+                    Use Arrow Keys to Navigate
+                </div>
+            </section>
+
+            <!-- Slide 2: Project Overview -->
+            <section>
+                <h2>Project Overview</h2>
+                <ul>
+                    <li><span class="highlight">Objective:</span> Predict daily sales for 54 supermarkets in Ecuador across 33 product families.</li>
+                    <li><span class="highlight">Dataset:</span> Kaggle Store Sales – Time Series Forecasting.</li>
+                    <li><span class="highlight">The Challenge:</span> Capture complex seasonality, holiday impacts, and external economic factors (Oil Prices).</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Model Creation: The Pipeline -->
+            <section>
+                <h2>Methodology: Step-by-Step</h2>
+                <ol>
+                    <li class="fragment"><span class="step">Data Preparation:</span> Filtered data from 2016+ to focus on modern patterns and clipped 99.9th percentile outliers.</li>
+                    <li class="fragment"><span class="step">Feature Engineering:</span> Merged stores, oil prices, and transactions. Created "Lagged Transactions" as a foot-traffic proxy.</li>
+                    <li class="fragment"><span class="step">Temporal Engineering:</span> Added cyclical features (Sines/Cosines), Payday signals, and complex Lags (16 to 35 days).</li>
+                    <li class="fragment"><span class="step">Target Encoding:</span> Calculated historical means per Store-Family to capture baseline performance.</li>
+                </ol>
+            </section>
+
+            <!-- Slide 4: The Winning Architecture -->
+            <section>
+                <h2>The "Super Optimized" Ensemble</h2>
+                <p>We moved beyond single models to a <span class="highlight">Weighted Ensemble Blend</span>:</p>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <div class="metric-box">
+                        <h4>XGBoost (40%)</h4>
+                        <p style="font-size: 0.6em;">Excellent at handling tabular features and outliers.</p>
+                    </div>
+                    <div style="font-size: 2em;">+</div>
+                    <div class="metric-box">
+                        <h4>LightGBM (60%)</h4>
+                        <p style="font-size: 0.6em;">Extremely fast and accurate with leaf-wise growth.</p>
+                    </div>
+                </div>
+                <p class="fragment" style="font-size: 0.8em;">Both models were trained on <span class="highlight">Log-Transformed</span> sales to stabilize variance.</p>
+            </section>
+
+            <!-- Slide 5: Performance Results -->
+            <section>
+                <h2>Performance Results</h2>
+                <p>Validation on the final 16 days of training data:</p>
+                <div>
+                    <div class="metric-box">
+                        <h3>0.9691</h3>
+                        <p>R² Score</p>
+                    </div>
+                    <div class="metric-box">
+                        <h3>13.21%</h3>
+                        <p>Relative MAE</p>
+                    </div>
+                </div>
+                <div class="metric-box">
+                    <h3>0.393</h3>
+                    <p>RMSLE</p>
+                </div>
+                <p style="font-size: 0.7em; color: #aaa;">The model explains over 96% of the variance in sales data.</p>
+            </section>
+
+            <!-- Slide 6: Key Insights -->
+            <section>
+                <h2>Key Business Insights</h2>
+                <ul>
+                    <li><span class="highlight">Promotions Work:</span> "On Promotion" status is the single strongest predictor of sales spikes.</li>
+                    <li><span class="highlight">The Payday Effect:</span> Sales consistently peak around the 15th and 30th of each month.</li>
+                    <li><span class="highlight">Regional Nuance:</span> Local holidays have a distinct impact compared to National holidays, requiring granular mapping.</li>
+                    <li><span class="highlight">Lag Dependency:</span> The 16-day and 28-day lags are critical, capturing both the immediate past and the monthly cycle.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7: What Can Be Improved? -->
+            <section>
+                <h2>Future Improvements</h2>
+                <ul>
+                    <li class="fragment"><strong>Hyperparameter Optimization:</strong> Use Bayesian optimization (Optuna) to fine-tune tree depth and learning rates.</li>
+                    <li class="fragment"><strong>Deep Learning Hybrid:</strong> Incorporate the Transformer model's attention mechanism to better handle long-range dependencies.</li>
+                    <li class="fragment"><strong>Stacking:</strong> Instead of simple weighting, use a "Meta-Learner" (like a Ridge Regression) to combine model outputs.</li>
+                    <li class="fragment"><strong>External Data:</strong> Add weather data or local competitor pricing if available.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 8: Conclusion -->
+            <section>
+                <h1>Thank You!</h1>
+                <p>The Super Optimized Ensemble is ready for deployment.</p>
+                <div style="margin-top: 30px;">
+                    <a href="https://github.com/Vlucy3/project" style="color: #00d4ff;">View Project on GitHub</a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            transition: 'slide'
+        });
+    </script>
+</body>
+</html>
