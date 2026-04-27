@@ -1,33 +1,31 @@
-/.claude
-/baselines.py
-/baseline_predictions.png
-/business_insights.py
-/detailed_results.py
-/docs
-/eda_analysis.py
-/expert_forecast_submission.csv
-/gru_model.pt
-/gru_model.py
-/gru_training_curve.png
-/holidays_events.csv
-/hybrid_ensemble_submission.csv
-/koncna_napoved_balansirana.csv
-/lstm_model.py
-/moja_kaggle_napoved.csv
-/moja_kaggle_napoved_optimizirana.csv
-/oil.csv
-/Presentation_Script_Lucija_Laura.pdf
-/proposal.md
-/requirements.txt
-/Retail_Sales_Forecasting_Presentation.html
-/rf_feature_importance.png
-/sample_submission.csv
-/segment_analysis.py
-/stores.csv
-/super_optimizirana_napoved.csv
-/test.csv
+# Data files (Too large for GitHub)
 /train.csv
+/test.csv
 /transactions.csv
-/transformer_model.py
+/oil.csv
+/holidays_events.csv
+/stores.csv
+/sample_submission.csv
+
+# Large Model Checkpoints
+*.pt
+*.h5
+
+# Local config & artifacts
 /_bmad
 /_bmad-output
+/.claude
+/.git
+/docs
+
+# Visuals & Temporary outputs (Optional to exclude)
+*.png
+*.html
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+env/
