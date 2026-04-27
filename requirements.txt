@@ -11,5 +11,5 @@ scikit-learn==1.8.0
 xgboost>=2.0.0
 lightgbm>=4.0.0
 
-# Deep learning
-torch>=2.0.0
+# Web App
+streamlit>=1.30.0
